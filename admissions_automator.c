@@ -36,7 +36,7 @@ typedef struct entry2 Node2;
 Node *studentRecords, *curr;
 int numStudents;
 
-//Problem a
+//Reading the applicants profiles into a linkedlist of structures
 void readApplications(char inputFile[]) {
     studentRecords = NULL;
     FILE *filename;
@@ -64,8 +64,7 @@ void readApplications(char inputFile[]) {
 }
 
 
-//Problem b: Find scholarship recipients
-
+//Problem b: Finding scholarship recipients
 void print(Node *studentRec) {
     curr = studentRec;
     while (curr) {
@@ -96,7 +95,7 @@ Node * findScholarshipRecipients(Node *studentRec) {
 
 
 
-//Problem c
+//Finding the average GPA of a given state
 float averageGPA(char stateName[], Node *studentRec) {
     curr = studentRec;
     float sum = 0;
@@ -114,7 +113,7 @@ float averageGPA(char stateName[], Node *studentRec) {
 
 
 
-//Problem d
+//Finding the student with the highest GPA of a given state
 Node * highestGPA(Node *studentRec, char stateName[]) {
     curr = studentRec;
     float highestGPA = 0.0;
@@ -134,7 +133,7 @@ Node * highestGPA(Node *studentRec, char stateName[]) {
 
 
 
-//Problem e 
+//Creating an alphabetically sorted histogram of all students in the database
 #define boolean int
 #define true 1
 #define false 0
@@ -217,7 +216,7 @@ void histogram(Node *studentRec) {
         }
         curr2 = curr2 -> next;
     }
-    //adding the states to an array with the proper size
+
     Node2 actualStates[j];
     for (i = 0; i < j; i++) {
         actualStates[i] = states[i];
@@ -232,20 +231,15 @@ void histogram(Node *studentRec) {
 int main() {
     
     char filename[] = "a0.txt";
-    //Problem a
     readApplications(filename);
     
-    //Problem b
-    printf("%s\n\n", findScholarshipRecipients(studentRecords));
+    printf("%s\n\n", findScholarshipRecipients(studentRecords)); //Prints scholarship recipients based on certain conditions
     
-    //Problem c
     char state[] = "California";
     printf("%f is the average gpa for %s residents!\n\n", state, averageGPA(state, studentRecords));
     
-    //Problem d
     printf("%s with a GPA of %f\n\n", highestGPA(studentRecords, "Washington")->name, highestGPA(studentRecords, "Washington")->gpa);
     
-    //Problem e
     histogram(studentRecords); //the histogram is printed in the histogram function
     return 0;
 }
